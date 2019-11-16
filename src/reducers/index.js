@@ -1,3 +1,6 @@
 import { combineReducers } from "redux";
+import NumberValueReducer from "./numberValueReducer";
 
-export default combineReducers({});
+export default combineReducers({
+  numberValue: NumberValueReducer
+});

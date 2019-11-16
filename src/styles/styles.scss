@@ -5,13 +5,14 @@ body {
 
 .background {
   width: 350px;
-  height: 409px;
+  height: 428px;
   background-color: black;
   position: fixed;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+  border-radius: 5px;
 }
 
 .buttons_position {
@@ -39,12 +40,23 @@ body {
   width: 342px !important;
   margin: 0 auto;
   font-weight: 600;
+  border: none;
+}
+
+.min_calc_display {
+  color: black;
+  font-size: 12px;
+  width: 342px !important;
+  height: 20px;
+  margin: 0 auto;
+  border: none;
+  padding-top: 0;
 }
 
 @media only screen and (max-width: 320px) {
     .background {
         width: 310px;
-        height: 409px;
+        height: 428px;
         background-color: black;
         position: fixed;
         top: 50%;
@@ -59,6 +71,16 @@ body {
         width: 302px !important;
         margin: 0 auto;
         font-weight: 600;
+      }
+
+      .min_calc_display {
+        color: black;
+        font-size: 12px;
+        width: 302px !important;
+        height: 20px;
+        margin: 0 auto;
+        border-bottom: none;
+        padding-top: 0;
       }
 
       .big_button {
