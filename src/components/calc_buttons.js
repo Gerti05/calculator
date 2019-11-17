@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchNumberValue } from "../actions";
+import { fetchNumberValue, fetchNegative } from "../actions";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,11 +16,17 @@ class Calc_Buttons extends React.Component {
   handleClick = e => {
     if (
       this.props.numberValue.length < 25 &&
-      e.target.value === "." && this.props.numberValue.indexOf(".") === -1
+      e.target.value === "." &&
+      this.props.numberValue.indexOf(".") === -1
     ) {
+      console.log("yes")
       this.props.fetchNumberValue(e.target.value);
-    } else if (this.props.numberValue.length < 25 && e.target.value !== ".") {
+    } else if (this.props.numberValue.length < 25 && e.target.value !== "." && e.currentTarget.value !== "+/-") {
+      console.log("no")
       this.props.fetchNumberValue(e.target.value);
+    } else if (e.currentTarget.value === "+/-") {
+      console.log("negative")
+      this.props.fetchNegative();
     }
   };
 
@@ -175,7 +181,8 @@ class Calc_Buttons extends React.Component {
             className="dash_button regular_button buttons_position mb-1"
             size="lg"
             variant="secondary"
-            value="~"
+            onClick={this.handleClick}
+            value="+/-"
           >
             <FontAwesomeIcon icon={faPlus} size="xs" />/
             <FontAwesomeIcon icon={faMinus} size="xs" />
@@ -217,12 +224,13 @@ class Calc_Buttons extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.numberValue.stack[0]);
+  console.log(state);
   return {
     numberValue: state.numberValue.stack[0]
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchNumberValue
+  fetchNumberValue,
+  fetchNegative
 })(Calc_Buttons);

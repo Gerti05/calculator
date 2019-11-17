@@ -5,3 +5,9 @@ export const fetchNumberValue = response => {
   };
 };
 
+export const fetchNegative = () => {
+  return {
+    type: "NEGATIVE",
+    payload: "-"
+  }
+}
