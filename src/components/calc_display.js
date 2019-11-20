@@ -4,16 +4,51 @@ import { ListGroup } from "react-bootstrap";
 
 class Calc_Display extends React.Component {
   renderDisplay = () => {
-    return (
-      <ListGroup>
-        <ListGroup.Item className="min_calc_display text-right mt-1">
-          {this.props.numberValue[0]}
-        </ListGroup.Item>
-        <ListGroup.Item className="calc_display text-right">
-          {this.props.numberValue[0]}
-        </ListGroup.Item>
-      </ListGroup>
-    );
+    if (
+      this.props.numberValue1 !== undefined &&
+      this.props.submit === undefined &&
+      this.props.numberValue2 === undefined
+    ) {
+      console.log("oopp")
+      return (
+        <ListGroup>
+          <ListGroup.Item className="min_calc_display text-right mt-1">
+            {this.props.numberValue1[0]}
+          </ListGroup.Item>
+          <ListGroup.Item className="calc_display text-right">
+            {this.props.numberValue1[0]}
+          </ListGroup.Item>
+        </ListGroup>
+      );
+    } else if (
+      this.props.numberValue1[0] !== undefined &&
+      this.props.submit[0] !== undefined &&
+      this.props.numberValue2[0] !== undefined
+    ) {
+      console.log("oop")
+      return (
+        <ListGroup>
+          <ListGroup.Item className="min_calc_display text-right mt-1">
+            {this.props.numberValue1[0]}
+          </ListGroup.Item>
+          <ListGroup.Item className="calc_display text-right">
+            {this.props.submit}
+          </ListGroup.Item>
+        </ListGroup>
+      );
+    } else {
+      console.log(this.props.submit[0])
+      return (
+        <ListGroup>
+          <ListGroup.Item className="min_calc_display text-right mt-1">
+            {this.props.numberValue1[0]}
+          </ListGroup.Item>
+          <ListGroup.Item className="calc_display text-right">
+            {this.props.numberValue1[0]}
+          </ListGroup.Item>
+        </ListGroup>
+      );
+    }
   };
 
   render() {
@@ -22,8 +57,11 @@ class Calc_Display extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    numberValue: state.numberValue.stack
+    numberValue1: state.numberValue.stack,
+    submit: state.numberValue.submitted,
+    numberValue2: state.numberValue.stack2
   };
 };
 

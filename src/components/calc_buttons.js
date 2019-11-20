@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchNumberValue, fetchNegative } from "../actions";
+import {
+  fetchNumberValue,
+  fetchNegative,
+  fetchClear,
+  fetchBackspace,
+  fetchSubmit
+} from "../actions";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,16 +25,33 @@ class Calc_Buttons extends React.Component {
       e.target.value === "." &&
       this.props.numberValue.indexOf(".") === -1
     ) {
-      console.log("yes")
+      console.log("yes");
       this.props.fetchNumberValue(e.target.value);
-    } else if (this.props.numberValue.length < 25 && e.target.value !== "." && e.currentTarget.value !== "+/-") {
-      console.log("no")
+    } else if (this.props.numberValue.length < 25 && e.target.value !== ".") {
+      console.log("no");
+      console.log(this.props.numberValue[0])
       this.props.fetchNumberValue(e.target.value);
-    } else if (e.currentTarget.value === "+/-") {
-      console.log("negative")
+    }
+  };
+
+  handleNegative = () => {
+    if (this.props.numberValue !== "0") {
       this.props.fetchNegative();
     }
   };
+
+  handleClear = () => {
+    this.props.fetchClear();
+  };
+
+  handleBackspace = () => {
+    this.props.fetchBackspace();
+  };
+
+  handleSubmit = () => {
+    console.log("submit")
+    this.props.fetchSubmit();
+  }
 
   buttonsDisplay = () => {
     return (
@@ -40,7 +63,6 @@ class Calc_Buttons extends React.Component {
             size="lg"
             variant="danger"
             onClick={this.handleClear}
-            value=""
           >
             AC
           </Button>
@@ -56,8 +78,7 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1 mt-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleSymbol}
-            value="/"
+            onClick={this.handleBackspace}
           >
             <FontAwesomeIcon icon={faDivide} size="xs" />
           </Button>
@@ -181,7 +202,7 @@ class Calc_Buttons extends React.Component {
             className="dash_button regular_button buttons_position mb-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleClick}
+            onClick={this.handleNegative}
             value="+/-"
           >
             <FontAwesomeIcon icon={faPlus} size="xs" />/
@@ -209,6 +230,7 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1"
             size="lg"
             variant="success"
+            onClick={this.handleSubmit}
             value="="
           >
             <FontAwesomeIcon icon={faEquals} size="xs" />
@@ -224,7 +246,6 @@ class Calc_Buttons extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     numberValue: state.numberValue.stack[0]
   };
@@ -232,5 +253,8 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   fetchNumberValue,
-  fetchNegative
+  fetchNegative,
+  fetchClear,
+  fetchBackspace,
+  fetchSubmit
 })(Calc_Buttons);

@@ -11,3 +11,21 @@ export const fetchNegative = () => {
     payload: "-"
   }
 }
+
+export const fetchClear = () => {
+  return {
+    type: "CLEAR"
+  }
+}
+
+export const fetchBackspace = () => {
+  return {
+    type: "BACKSPACE"
+  }
+}
+
+export const fetchSubmit = () => {
+  return {
+    type: "SUBMIT"
+  }
+}
