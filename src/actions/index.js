@@ -29,3 +29,10 @@ export const fetchSubmit = () => {
     type: "SUBMIT"
   }
 }
+
+export const fetchOperations = response => {
+  return {
+    type: "OPERATIONS",
+    payload: response
+  }
+}

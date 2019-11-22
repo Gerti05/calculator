@@ -5,7 +5,8 @@ import {
   fetchNegative,
   fetchClear,
   fetchBackspace,
-  fetchSubmit
+  fetchSubmit,
+  fetchOperations
 } from "../actions";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,8 +29,6 @@ class Calc_Buttons extends React.Component {
       console.log("yes");
       this.props.fetchNumberValue(e.target.value);
     } else if (this.props.numberValue.length < 25 && e.target.value !== ".") {
-      console.log("no");
-      console.log(this.props.numberValue[0])
       this.props.fetchNumberValue(e.target.value);
     }
   };
@@ -49,14 +48,16 @@ class Calc_Buttons extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log("submit")
     this.props.fetchSubmit();
+  }
+
+  handleOperations = e => {
+    this.props.fetchOperations(e.currentTarget.value)
   }
 
   buttonsDisplay = () => {
     return (
       <div>
-        {console.log(this.props.numberValue)}
         <ButtonToolbar>
           <Button
             className="big_button buttons_position mb-1 mt-1"
@@ -78,7 +79,8 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1 mt-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleBackspace}
+            onClick={this.handleOperations}
+            value="/"
           >
             <FontAwesomeIcon icon={faDivide} size="xs" />
           </Button>
@@ -115,7 +117,7 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleSymbol}
+            onClick={this.handleOperations}
             value="*"
           >
             <FontAwesomeIcon icon={faTimes} size="xs" />
@@ -153,7 +155,7 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleSymbol}
+            onClick={this.handleOperations}
             value="-"
           >
             <FontAwesomeIcon icon={faMinus} size="xs" />
@@ -191,7 +193,7 @@ class Calc_Buttons extends React.Component {
             className="regular_button buttons_position mb-1"
             size="lg"
             variant="secondary"
-            onClick={this.handleSymbol}
+            onClick={this.handleOperations}
             value="+"
           >
             <FontAwesomeIcon icon={faPlus} size="xs" />
@@ -256,5 +258,6 @@ export default connect(mapStateToProps, {
   fetchNegative,
   fetchClear,
   fetchBackspace,
-  fetchSubmit
+  fetchSubmit,
+  fetchOperations
 })(Calc_Buttons);
