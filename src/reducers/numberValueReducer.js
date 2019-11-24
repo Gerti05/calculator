@@ -1,3 +1,4 @@
+//@ts-check
 export default (
   state = {
     stack: ["0"],
@@ -533,3 +534,4 @@ export default (
       return state;
   }
 };
+
