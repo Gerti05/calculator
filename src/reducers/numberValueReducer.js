@@ -374,11 +374,7 @@ export default (
           stack: state.stack,
           operations: state.operations,
           inputState: "replace",
-<<<<<<< HEAD
           isNegative: parseFloat(state.stack[0]) >= 0 ? false : true,
-=======
-          isNegative: parseFloat(state.stack) >= 0 ? false : true,
->>>>>>> 88b0ed84e86224d80bf44fa5af92daa161bb1139
           submitted: true,
           prevOperation: null
         };
