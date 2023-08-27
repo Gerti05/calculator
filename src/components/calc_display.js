@@ -9,7 +9,7 @@ class Calc_Display extends React.Component {
       this.props.numberValue2 === null
     ) {
       return (
-        <ListGroup>
+        <ListGroup data-test="calcDisplayComponent">
           <ListGroup.Item className="min_calc_display text-right mt-1">
             {this.props.numberValue1[0]}
           </ListGroup.Item>
@@ -24,7 +24,7 @@ class Calc_Display extends React.Component {
       this.props.submitted === false
     ) {
       return (
-        <ListGroup>
+        <ListGroup data-test="calcDisplayComponent">
           <ListGroup.Item className="min_calc_display text-right mt-1">
             {this.props.numberValue2} {this.props.operations}
           </ListGroup.Item>
@@ -41,7 +41,7 @@ class Calc_Display extends React.Component {
     ) {
       console.log("lk");
       return (
-        <ListGroup>
+        <ListGroup data-test="calcDisplayComponent">
           <ListGroup.Item className="min_calc_display text-right mt-1">
             {this.props.numberValue2}
           </ListGroup.Item>
@@ -58,7 +58,7 @@ class Calc_Display extends React.Component {
     ) {
       console.log("lk");
       return (
-        <ListGroup>
+        <ListGroup data-test="calcDisplayComponent">
           <ListGroup.Item className="min_calc_display text-right mt-1">
             {this.props.numberValue2} {this.props.operations}
           </ListGroup.Item>
@@ -70,7 +70,7 @@ class Calc_Display extends React.Component {
     }
     else {
       return (
-        <ListGroup>
+        <ListGroup data-test="calcDisplayComponent">
           <ListGroup.Item className="min_calc_display text-right mt-1">
             {this.props.numberValue1[0]}
           </ListGroup.Item>
@@ -82,7 +82,7 @@ class Calc_Display extends React.Component {
     }
   };
   render() {
-    return <div>{this.renderDisplay()}</div>;
+    return <div data-test="calcDisplayComponent">{this.renderDisplay()}</div>;
   }
 }
 
